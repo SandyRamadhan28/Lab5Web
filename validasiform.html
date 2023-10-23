@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Validation</title>
+</head>
+<body>
+    <h2>Form Validation</h2>
+    <form id="myForm" onsubmit="return validateForm()">
+        <label for="name">Nama:</label>
+        <input type="text" id="name" name="name" required>
+        <br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <p id="error-msg" style="color: red;"></p>
+
+    <script>
+        function validateForm() {
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+
+            var namePattern = /^[a-zA-Z ]+$/;
+            var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+            var error = "";
+
+            if (!name.match(namePattern)) {
+                error += "Nama hanya boleh berisi huruf dan spasi.\n";
+            }
+
+            if (!email.match(emailPattern)) {
+                error += "Email tidak valid.\n";
+            }
+
+            if (error !== "") {
+                document.getElementById('error-msg').innerHTML = error;
+                return false;
+            } else {
+                return true;
+            }
+        }
+    </script>
+</body>
+</html>
